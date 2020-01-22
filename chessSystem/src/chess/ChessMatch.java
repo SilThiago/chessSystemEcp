@@ -1,22 +1,30 @@
 package chess;
 
 import boardGame.Board;
+import boardGame.Position;
+import chess.pieces.Rock;
 
 public class ChessMatch {
 
-    private Board bord;
+    private Board board;
 
     public ChessMatch (){
-        bord = new Board(8,8);
+        board = new Board(8,8);
+        initialSetup();
     }
 
     public ChessPiece[][] getPiece(){
-        ChessPiece[][] mat = new ChessPiece[bord.getRows()][bord.getColumns()];
-        for (int i = 0; i<bord.getRows();i++){
-            for (int j = 0; j<bord.getColumns();j++){
-                mat[i][j] = (ChessPiece) bord.piece(i,j);
+        ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
+        for (int i = 0; i<board.getRows();i++){
+            for (int j = 0; j<board.getColumns();j++){
+                mat[i][j] = (ChessPiece) board.piece(i,j);
             }
         }
         return mat;
     }
+    
+    private void initialSetup() {
+    	board.placePiece(new Rock(board, Color.WHITE), new Position(2,1));
+    }
+    
 }
